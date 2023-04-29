@@ -26,6 +26,8 @@ Moon moon_8;
 Moon moon_9;
 Moon moon_10;
 
+Spaceship spaceship;
+
 float velocity = .01f;
 float time = 0.f;
 float theta = 0.f;
