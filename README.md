@@ -62,3 +62,6 @@ Nawigacja statkiem po scenie powinna być zrealizowana za pomocą klawiatury i m
 
 Interakcja za pomocą klawiatury powinna pozwalać na kierowanie co najmniej ruchem jednego ciała niebieskiego lub sterowanie działaniem broni umieszczonej na statku.
 ### Zadanie wykonane
+Program bazuje na układzie planetarnym z poprzedniego zadania. Statek porusza się w wszystkich 3 płaszczyznach przy użyciu przycisków W, S, A, D (ruch do przodu, do tyłu, w lewo, w prawo) oraz ',' i '.' (góra i dół). Jako dodatkową możliwość kontroli statku dodano sterowanie myszką, gdzie przy wciśnięciu lewego przycisku myszy statek porusza się w górę, a przy wciśnięciu prawego przycisku - w dół.
+Jako dodatkową możliwość programu dodano również kontrolowanie zachowania dwóch ciał niebieskich - drugiej planety (imbryk) oraz czwartej planety ("Jowisz") od gwiazdy. Wciskając przyciski H i J możemy kontrolować prędkość planety_2, a przyciskami K i L - prędkość planety_4.
+<img width="1762" alt="Zrzut ekranu 2023-04-30 o 18 06 20" src="https://user-images.githubusercontent.com/106348157/235363952-d5ea46a3-6d0d-4505-b0ae-8deae9954a3a.png">
