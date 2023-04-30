@@ -1,15 +1,23 @@
 public class Spaceship {
+  // Statek
+  PShape shape;
   PVector position;
   PImage texture;
   float velocity;
+  float theta = 0.f;
   boolean x_forward, x_back;
   boolean y_forward, y_back;
   boolean z_forward, z_back;
+  
+  // Pocisk
+  PVector bulletPos;
+  float bulletVelocity = 1f;
   
   public Spaceship(PImage text, float v) {
     position = PVector.random3D();
     this.texture = text;
     this.velocity = v;
+    this.shape = createShape(SPHERE, 15);
   }
   
   public float getPositionX() {
@@ -27,10 +35,10 @@ public class Spaceship {
   public void getKey(char keyChar) {
     switch(keyChar) {
       case 'W':
-        z_forward = true;
+        z_back = true;
         break;
       case 'S':
-        z_back = true;
+        z_forward = true;
         break;
       case 'A':
         x_back = true;
@@ -39,21 +47,21 @@ public class Spaceship {
         x_forward = true;
         break;
       case ',':
-        y_forward = true;
+        y_back = true;
         break;
       case '.':
-        y_back = true;
+        y_forward = true;
         break;
     }
   }
   
-  public void geyKeyReleased(char keyChar) {
+  public void endKey(char keyChar) {
     switch(keyChar) {
-            case 'W':
-        z_forward = false;
+      case 'W':
+        z_back = false;
         break;
       case 'S':
-        z_back = false;
+        z_forward = false;
         break;
       case 'A':
         x_back = false;
@@ -62,10 +70,10 @@ public class Spaceship {
         x_forward = false;
         break;
       case ',':
-        y_forward = false;
+        y_back = false;
         break;
       case '.':
-        y_back = false;
+        y_forward = false;
         break;
     }
   }
@@ -88,12 +96,19 @@ public class Spaceship {
     if (y_forward) {
       position.y += velocity;
     }
-    else if (y_back {
+    else if (y_back) {
       position.y -= velocity;
     }
   }
   
   public void display() {
     shipController();
+    
+    translate(position.x, position.y, position.z + 400);
+    rotateY(theta);
+    shape.setTexture(texture);
+    shape(shape);
+    
+    theta += .01f;
   }
 }

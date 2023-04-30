@@ -64,7 +64,7 @@ public class Planet {
     }
     translate(tX, tY, tZ);
     specular(200, 100, 100);
-    //rotateY(time * multi);
+    rotateY(time);
     shape(planet);
     
     time += velocity;

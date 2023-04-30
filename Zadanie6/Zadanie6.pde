@@ -6,6 +6,7 @@ PeasyCam cam;
 PShape teapot;
 PShape shape;
 PImage texture;
+PImage deathstar;
 
 Sun sun;
 
@@ -39,6 +40,10 @@ void setup() {
   
   teapot = loadShape("teapot.obj");
   texture = loadImage("jupiter.png");
+  deathstar = loadImage("deathstar.png");
+  
+  cam = new PeasyCam(this, 1200);
+  cam.setActive(false);
   
   sun = new Sun(120, #B3FFFC, theta);
   
@@ -59,12 +64,14 @@ void setup() {
   moon_9 = new Moon(1, SPHERE, time, velocity, 20, 3.2f, #03ff28);
   moon_10 = new Moon(2, SPHERE, time, velocity, 25, 2.2f, #4203ff);
   
-  cam = new PeasyCam(this, 825, 490, 0, 2000);
+  spaceship = new Spaceship(deathstar, 5);
 }
 
 void draw() {
   background(0);
   ambientLight(30, 30, 30);
+  
+  cam.lookAt(spaceship.getPositionX() + 825, spaceship.getPositionY() + 450, spaceship.getPositionZ() + 400, 300, 10);
   
   // Przesunięcie ukladu do 825, 490, 0
   translate(width/2, height/2, 0);
@@ -146,4 +153,82 @@ void draw() {
       moon_10.display(0, 0, 150);
     popMatrix();
   popMatrix();
+  
+  pushMatrix();
+    spaceship.display();
+  popMatrix();
+}
+
+void keyPressed() {
+  // Kontrolki statku
+  if (keyCode == 'W') {
+    spaceship.getKey('W');
+  }
+  else if (keyCode == 'S') {
+    spaceship.getKey('S');
+  }
+  else if (keyCode == 'A') {
+    spaceship.getKey('A');
+  }
+  else if (keyCode == 'D') {
+    spaceship.getKey('D');
+  }
+  else if (keyCode == ',') {
+    spaceship.getKey(',');
+  }
+  else if (keyCode == '.') {
+    spaceship.getKey('.');
+  }
+  else if (keyCode == 'H') {
+    planet_2.velocity += .01f;
+  }
+  else if (keyCode == 'J') {
+    planet_2.velocity -= .01f;
+  }
+  else if (keyCode == 'K') {
+    planet_3.velocity += .01f;
+  }
+  else if (keyCode == 'L') {
+    planet_3.velocity -= .01f;
+  }
+}
+
+void keyReleased() {
+  // Kontrolki statku
+  if (keyCode == 'W') {
+    spaceship.endKey('W');
+  }
+  else if (keyCode == 'S') {
+    spaceship.endKey('S');
+  }
+  else if (keyCode == 'A') {
+    spaceship.endKey('A');
+  }
+  else if (keyCode == 'D') {
+    spaceship.endKey('D');
+  }
+  else if (keyCode == ',') {
+    spaceship.endKey(',');
+  }
+  else if (keyCode == '.') {
+    spaceship.endKey('.');
+  }
+}
+
+void mousePressed() {
+  if (mouseButton == LEFT) {
+    spaceship.getKey(',');
+  }
+  else if (mouseButton == RIGHT) {
+    spaceship.getKey('.');
+  }
+}
+
+void mouseReleased() {
+  if (mouseButton == LEFT) {
+    spaceship.endKey(',');
+  }
+  else if (mouseButton == RIGHT) {
+    spaceship.endKey('.');
+  }
 }
